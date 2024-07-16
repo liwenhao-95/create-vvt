@@ -9,7 +9,7 @@ Write using typescript, Use esbuild for packaging
 npm install
 npm run bulid
 npm link
-tmp-cli create your-project-name
+tmp-cli create `your-project-name`
 ```
 
 > [!NOTE]
