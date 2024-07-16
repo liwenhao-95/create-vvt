@@ -1,14 +1,14 @@
 {
   "name": "liwh-cli",
   "bin": {
-    "tmp-cli": "bin/tmp-cli.cjs"
+    "tmp-cli": "tmp-cli.min.cjs"
   },
   "type": "module",
   "version": "0.0.0",
   "description": "Simple way to generate projects",
-  "main": "bin/tmp-cli.cjs",
+  "main": "tmp-cli.min.cjs",
   "files": [
-    "bin"
+    "bin/tmp-cli.min.cjs"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
