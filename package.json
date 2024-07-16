@@ -1,0 +1,40 @@
+{
+  "name": "liwh-cli",
+  "bin": {
+    "tmp-cli": "bin/tmp-cli.cjs"
+  },
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Simple way to generate projects",
+  "main": "bin/tmp-cli.cjs",
+  "files": [
+    "bin"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsx build.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liwenhao-95/liwh-cli.git"
+  },
+  "author": "liwh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liwenhao-95/liwh-cli/issues"
+  },
+  "homepage": "https://github.com/liwenhao-95/liwh-cli#readme",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.14.10",
+    "@types/prompts": "^2.4.9",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "download-git-repo": "^3.0.2",
+    "esbuild": "^0.23.0",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.0.1",
+    "prompts": "^2.4.2",
+    "tsx": "^4.16.2"
+  }
+}
