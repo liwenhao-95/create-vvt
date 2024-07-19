@@ -7,8 +7,8 @@ import { BuildOptions, build } from 'esbuild'
 
 const dir = dirname(fileURLToPath(import.meta.url))
 const outdir = resolve(dir, 'bin')
-const outfile = resolve(outdir, 'tmp-cli.cjs')
-const outminfile = resolve(outdir, 'tmp-cli.min.cjs')
+const outfile = resolve(outdir, 'liwh-cli.cjs')
+const outminfile = resolve(outdir, 'liwh-cli.min.cjs')
 
 const dobuild = async () => {
   const option: BuildOptions = {
@@ -16,20 +16,25 @@ const dobuild = async () => {
     platform: 'node',
     format: 'cjs',
     bundle: true,
-    external: ['electron']
+    target: 'node18'
   }
 
-  await Promise.all([
-    build({
-      ...option,
-      outfile
-    }),
-    build({
-      ...option,
-      minify: true,
-      outfile: outminfile
-    })
-  ])
+  build({
+    ...option,
+    minify: true,
+    outfile: outminfile
+  })
+  // await Promise.all([
+  //   build({
+  //     ...option,
+  //     outfile
+  //   }),
+  //   build({
+  //     ...option,
+  //     minify: true,
+  //     outfile: outminfile
+  //   })
+  // ])
 }
 
 const spinner = ora(`${chalk.blue('cleaning bin...')}`).start()
