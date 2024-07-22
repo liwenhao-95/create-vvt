@@ -1,16 +1,15 @@
 {
   "name": "create-vvt",
   "bin": {
-    "create-vvt": "index.js"
+    "create-vvt": "index.min.cjs"
   },
   "type": "module",
-  "version": "0.0.13",
+  "version": "0.0.15",
   "description": "Simple way to generate projects",
   "files": [
-    "index.js",
+    "index.min.cjs",
     "template-pc",
-    "template-mobile",
-    "bin"
+    "template-mobile"
   ],
   "engines": {
     "node": "^18.0.0 || >=20.0.0"
@@ -22,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liwenhao-95/liwh-cli.git"
+    "url": "git+https://github.com/liwenhao-95/create-vvt.git"
   },
   "author": "liwh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/liwenhao-95/liwh-cli/issues"
+    "url": "https://github.com/liwenhao-95/create-vvt/issues"
   },
-  "homepage": "https://github.com/liwenhao-95/liwh-cli#readme",
+  "homepage": "https://github.com/liwenhao-95/create-vvt#readme",
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.14.10",
