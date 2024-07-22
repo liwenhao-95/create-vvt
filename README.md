@@ -1,9 +1,9 @@
-# create-vvt
+# create-vvts
 Simple way to generate projects
 
 ## Usage
 Write using typescript, Use esbuild for packaging
 
 ```sh
-npm create vvt@latest
+npm create vvts@latest
 ```
