@@ -1,15 +1,14 @@
 {
   "name": "create-vvt",
   "bin": {
-    "create-vvt": "index.min.cjs"
+    "create-vvt": "bin/index.min.cjs"
   },
   "type": "module",
   "version": "0.0.15",
   "description": "Simple way to generate projects",
   "files": [
-    "index.min.cjs",
-    "template-pc",
-    "template-mobile"
+    "bin",
+    "templates"
   ],
   "engines": {
     "node": "^18.0.0 || >=20.0.0"

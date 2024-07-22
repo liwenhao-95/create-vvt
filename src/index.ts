@@ -3,7 +3,7 @@
 import chalk from 'chalk'
 import { emptyDir, ensureDir } from 'fs-extra'
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import ora from 'ora'
 import prompts from 'prompts'
@@ -81,8 +81,10 @@ const init = async () => {
 
   const spinner = ora(`${chalk.blue('正在加载项目模板中...')}`).start()
 
-  const templateDir = resolve(__dirname, `template-${chooseTemplate}`)
-  // const templateDir = resolve(fileURLToPath(import.meta.url), `template-${chooseTemplate}`)
+  // 因为esbuild打包格式为cjs时，使用fileURLToPath(import.meta.url))会报错
+  // 故使用__dirname来解决
+  const templateDir = resolve(__dirname, '../templates', `template-${chooseTemplate}`)
+  // const templateDir = resolve(dirname(fileURLToPath(import.meta.url)), '../templates', `template-${chooseTemplate}`)
   const files = readdirSync(templateDir)
   for (const file of files.filter(f => f !== 'package.json')) {
     copy(join(templateDir, file), resolve(root, file))

@@ -6,14 +6,13 @@ import { fileURLToPath } from 'node:url'
 import { BuildOptions, build } from 'esbuild'
 
 const dir = dirname(fileURLToPath(import.meta.url))
-// const outdir = resolve(dir, 'bin')
+const outdir = resolve(dir, 'bin')
 // const outfile = resolve(outdir, 'liwh-cli.cjs')
-const outminfile = resolve(dir, 'index.min.cjs')
+const outminfile = resolve(outdir, 'index.min.cjs')
 
 const dobuild = async () => {
   const option: BuildOptions = {
-    entryPoints: ['index.ts'],
-    // entryPoints: ['src/index.ts'],
+    entryPoints: ['src/index.ts'],
     platform: 'node',
     format: 'cjs',
     bundle: true,
@@ -39,9 +38,9 @@ const dobuild = async () => {
 }
 
 const spinner = ora(`${chalk.blue('cleaning...')}`).start()
-// await emptyDir(outminfile).then(() => {
-//   spinner.succeed(chalk.green('clearing completed!'))
-// }).catch((err) => spinner.fail(chalk.red(`clear failed, reason: ${err}`)))
+await emptyDir(outdir).then(() => {
+  spinner.succeed(chalk.green('clearing completed!'))
+}).catch((err) => spinner.fail(chalk.red(`clear failed, reason: ${err}`)))
 
 spinner.start('building...')
 
