@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import chalk from 'chalk'
-import { emptyDir, ensureDir } from 'fs-extra'
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { emptyDir, ensureDir, copy } from 'fs-extra'
+import { pathExistsSync, readJSONSync, writeJSONSync } from 'fs-extra/esm'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import ora from 'ora'
@@ -28,7 +28,7 @@ const init = async () => {
     },
     {
       name: 'isOverwrite',
-      type: (_prev, values) => existsSync(join(cwd, values.checkNameFormat || values.projectName)) ? 'toggle' : null,
+      type: (_prev, values) => pathExistsSync(join(cwd, values.checkNameFormat || values.projectName)) ? 'toggle' : null,
       message: '已存在重复文件，是否覆盖？',
       active: '是',
       inactive: '否',
@@ -70,13 +70,13 @@ const init = async () => {
   const pkgName = checkNameFormat || projectName
   let root = join(cwd, pkgName)
 
-  if (isOverwrite && existsSync(pkgName)) {
+  if (isOverwrite && pathExistsSync(pkgName)) {
     const spinner = ora(`${chalk.blue(`正在清除 ${root} 文件`)}`).start()
     await ensureDir(root)
     await emptyDir(root)
     spinner.succeed(chalk.green(`清除 ${root} 文件成功！`))
   } else {
-    mkdirSync(root, { recursive: true })
+    await ensureDir(root)
   }
 
   const spinner = ora(`${chalk.blue('正在加载项目模板中...')}`).start()
@@ -85,15 +85,11 @@ const init = async () => {
   // 故使用__dirname来解决
   const templateDir = resolve(__dirname, '../templates', `template-${chooseTemplate}`)
   // const templateDir = resolve(dirname(fileURLToPath(import.meta.url)), '../templates', `template-${chooseTemplate}`)
-  const files = readdirSync(templateDir)
-  for (const file of files.filter(f => f !== 'package.json')) {
-    copy(join(templateDir, file), resolve(root, file))
-  }
+  await copy(templateDir, root)
 
-  const pkg = readFileSync(resolve(templateDir, 'package.json'), 'utf-8')
-  const pkgJson = JSON.parse(pkg)
-  pkgJson.name = pkgName
-  writeFileSync(resolve(root, 'package.json'), JSON.stringify(pkgJson, null, 2), 'utf-8')
+  const pkg = readJSONSync(resolve(templateDir, 'package.json'))
+  pkg.name = pkgName
+  writeJSONSync(resolve(root, 'package.json'), pkg, {spaces: 2})
 
   spinner.succeed(chalk.green('项目模板加载成功'))
 
@@ -101,24 +97,6 @@ const init = async () => {
 
 const checkName = (name: string) => {
   return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(name)
-}
-
-const copy = (src: string, dest: string) => {
-  const stat = statSync(src)
-  if (stat.isDirectory()) {
-    copyDir(src, dest)
-  } else {
-    copyFileSync(src, dest)
-  }
-}
-
-const copyDir = (srcDir: string, destDir: string) => {
-  mkdirSync(destDir, { recursive: true })
-  for (const file of readdirSync(srcDir)) {
-    const srcFile = resolve(srcDir, file)
-    const destFile = resolve(destDir, file)
-    copy(srcFile, destFile)
-  }
 }
 
 init()
