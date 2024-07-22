@@ -4,7 +4,7 @@
     "create-vvt": "bin/index.min.cjs"
   },
   "type": "module",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Simple way to generate projects",
   "files": [
     "bin",
