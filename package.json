@@ -1,10 +1,10 @@
 {
-  "name": "create-vvt",
+  "name": "create-vvts",
   "bin": {
-    "create-vvt": "bin/index.min.cjs"
+    "create-vvts": "bin/index.min.cjs"
   },
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Simple way to generate projects",
   "files": [
     "bin",
@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liwenhao-95/create-vvt.git"
+    "url": "git+https://github.com/liwenhao-95/create-vvts.git"
   },
   "author": "liwh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/liwenhao-95/create-vvt/issues"
+    "url": "https://github.com/liwenhao-95/create-vvts/issues"
   },
-  "homepage": "https://github.com/liwenhao-95/create-vvt#readme",
+  "homepage": "https://github.com/liwenhao-95/create-vvts#readme",
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.14.10",
