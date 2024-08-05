@@ -49,8 +49,12 @@ const init = async () => {
       message: '请选择模板',
       choices: [
         {
-          title: 'pc端',
+          title: 'pc端(Vite + Vue + TS)',
           value: 'pc'
+        },
+        {
+          title: 'pc端(Vite + React + TS)',
+          value: 'react-pc'
         },
         {
           title: '移动端',

@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-recess-order"
+  ],
+  "rules": {
+    "selector-class-pattern": [
+      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
+      {
+        "message": "Expected class selector to be kebab-case"
+      }
+    ],
+    "length-zero-no-unit": true,
+    "at-rule-no-unknown": null,
+    "no-descending-specificity": true,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
+  }
+}
